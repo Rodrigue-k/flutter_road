@@ -1,6 +1,6 @@
-# flutter_road 🚀
+# FlutterRoad 🚀
 
-**flutter_road** est une application pédagogique interactive conçue pour apprendre et explorer les widgets Flutter de manière visuelle, pratique et approfondie.
+**FlutterRoad** est une application pédagogique interactive conçue pour apprendre et explorer les widgets Flutter de manière visuelle, pratique et approfondie.
 
 ## 🎯 Objectif
 
