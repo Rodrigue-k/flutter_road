@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_road/features/home/presentation/pages/home_page.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,67 +13,49 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              height: 600,
-              width: 300,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(25),
-                border: Border.all(width: 8),
-                boxShadow: [BoxShadow(
-                  color: Colors.grey,
-                  offset: Offset(0, 3),
-                  blurRadius: 5
-                )]
-              ),
-              child: Center(
-                child: Container(
-                  height: 300,
-                  width: 150,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey,
-                        offset: Offset(0, 2)
-                      ,
-                      blurRadius: 5
-                      
-                      )
-                    ]
-                  ),
-                  child: Center(
-                    child: Container(
-                      height: 150,
-                  width: 75,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey,
-                        offset: Offset(0, 2)
-                      ,
-                      blurRadius: 5
-                      
-                      )
-                    ]
-                  ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+      home: AppNav(),
     );
   }
 }
 
+class AppNav extends StatefulWidget {
 
+  AppNav({super.key});
+
+  @override
+  State<AppNav> createState() => _AppNavState();
+}
+
+class _AppNavState extends State<AppNav> {
+final pages = [
+   HomePage(),
+   Text("Ok"),
+   Text("Ok")
+  ];
+
+  int _selectedIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: pages[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: (value) {
+          setState(() {
+            _selectedIndex = value;
+          });
+          },
+        currentIndex: _selectedIndex,
+        selectedFontSize: 16,
+        selectedLabelStyle: GoogleFonts.splineSans(),
+        selectedItemColor: const Color.fromARGB(255, 8, 83, 145),
+        mouseCursor: MouseCursor.uncontrolled,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.search_outlined), label: "Explore"),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite_border_outlined), label: "Favorites"),
+          BottomNavigationBarItem(icon: Icon(Icons.person_2_outlined), label: "Profile")
+        ]
+        ),
+    );
+  }
+}
